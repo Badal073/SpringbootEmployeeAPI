@@ -18,5 +18,10 @@ public class EmployeeService {
 		List<Employee> employeeList = employeeRepository.findAll();
 		return employeeList;
 	}
+	
+	public Employee getEmployeeById(Long id) {
+		Employee  employee = employeeRepository.findById(id).orElse(null);
+		return employee;
+	}
 
 }

@@ -23,5 +23,10 @@ public class EmployeeService {
 		Employee  employee = employeeRepository.findById(id).orElse(null);
 		return employee;
 	}
+	
+	public Employee  insertEmployee(Employee employee) {
+		Employee  savedEmployee = employeeRepository.save(employee);
+		return savedEmployee;
+	}
 
 }

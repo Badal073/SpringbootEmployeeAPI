@@ -3,6 +3,7 @@ package com.piersqure.employee.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.piersqure.employee.entity.Employee;
@@ -27,6 +28,17 @@ public class EmployeeService {
 	public Employee  insertEmployee(Employee employee) {
 		Employee  savedEmployee = employeeRepository.save(employee);
 		return savedEmployee;
+	}
+
+	public Employee updateEmployee(Employee employee) {
+		Employee existingEmployee = getEmployeeById(employee.getId());
+		if (existingEmployee!= null) {
+			existingEmployee.setName(employee.getName());
+			existingEmployee.setDepartment(employee.getDepartment());
+			existingEmployee.setSalary(employee.getSalary());
+			return employeeRepository.save(existingEmployee);
+		}
+		return null;
 	}
 
 }
